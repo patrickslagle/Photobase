@@ -9,7 +9,7 @@ import {
   AsyncStorage
 } from 'react-native'
 
-import { goHome } from '../navigation'
+// import { goHome } from '../navigation'
 // import { USER_KEY } from './config'
 
 export default class SignIn extends React.Component {

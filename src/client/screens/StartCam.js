@@ -4,7 +4,14 @@ import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Icon } from 'native-base'
 import { Camera, Permissions } from 'expo';
-import { createStackNavigator } from 'react-navigation'; 
+
+
+// const splashy = require('splashy')();
+
+
+
+
+
 
 //insert SERVER URL
 const SERVER_URL = 'https://postman-echo.com/post';
@@ -20,39 +27,47 @@ class Autoshoot extends React.Component {
       base64: true,
       exif: false
     }).then(photo => {
-
+      console.log("PHOTO: ", Object.keys(photo));
+      console.log('base64: ', photo.base64);
+      this.uploadPicture('uri: ', photo.base64);
       this.setState({photo});
     })
   }
 
-  uploadPicture = () => {
-    if(this.state.photo){
+  uploadPicture = (photo) => {
+    console.log('upload?!');
+    // if(this.state.photo){
+    if(photo){
       let data = new FormData();
       data.append('picture', {
-        uri: this.state.photo,
+        uri: photo.uri,
         name: 'myImg.jpg',
         type: 'image/jpg'
       });
 
-      const config = {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'multipart/form-data;',
-          // Authorization: 
-        }, 
-        body: data
-      };
-      return fetch(SERVER_URL, {
+      // const config = {
+      //   method: 'POST',
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'multipart/form-data;',
+      //     // Authorization: 
+      //   }, 
+      //   body: data
+      // };
+      return fetch('/generatePalette',{
         body: JSON.stringify({
-          image: this.state.photo.base64
+          image: photo.base64,
         }),
         headers: {
           'content-type': 'application/json'
         },
         method: 'POST'
       })
-      .then(response => {console.log('success!'); response.json()})
+      .then(response => {
+        console.log('success!'); 
+        
+        response.json()})
+      .catch(err => console.log('error: ', err));
     }
   }
   render() {
@@ -70,7 +85,6 @@ class Autoshoot extends React.Component {
           <View style={{flex: 1, paddingHorizontal: 10, marginBottom: 15}}>
             <View style={{flex: 1}}>
                 <MaterialCommunityIcons name="circle-outline" onPress={this.takePicture} style={{ color: 'white',justifyContent: 'flex-end',alignContent: 'flex-end', alignItems: 'flex-end', fontSize : 100 } }></MaterialCommunityIcons>
-                {this.uploadPicture()};
               <Icon name="ios-images" style={{ color: 'white', fontSize: 36 }} />
             </View>
           </View>

@@ -22,7 +22,7 @@ class LoginScreen extends Component {
         <Button title="Login"
           onPress={() => this.props.navigation.navigate('SignIn')} />
         <Button title="Create Account"
-          onPress={() => this.props.navigation.navigate('Signup')} />
+          onPress={() => this.props.navigation.navigate('SignUp')} />
         <Button
           title='Guest Access'
           onPress={() => this.props.navigation.navigate('Guest')} />
