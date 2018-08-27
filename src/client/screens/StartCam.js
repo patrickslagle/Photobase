@@ -1,20 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native'
-// import Autoshoot from './Autoshoot.js'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Icon } from 'native-base'
 import { Camera, Permissions } from 'expo';
 
 
-// const splashy = require('splashy')();
-
-
-
-
-
-
 //insert SERVER URL
-const SERVER_URL = 'https://postman-echo.com/post';
+const SERVER_URL = 'http://192.168.1.43:8080/generatePalette';
 
 
 class Autoshoot extends React.Component {
@@ -27,16 +19,13 @@ class Autoshoot extends React.Component {
       base64: true,
       exif: false
     }).then(photo => {
-      console.log("PHOTO: ", Object.keys(photo));
-      console.log('base64: ', photo.base64);
-      this.uploadPicture('uri: ', photo.base64);
+      this.uploadPicture(photo.base64);
       this.setState({photo});
     })
   }
 
   uploadPicture = (photo) => {
     console.log('upload?!');
-    // if(this.state.photo){
     if(photo){
       let data = new FormData();
       data.append('picture', {
@@ -45,18 +34,10 @@ class Autoshoot extends React.Component {
         type: 'image/jpg'
       });
 
-      // const config = {
-      //   method: 'POST',
-      //   headers: {
-      //     Accept: 'application/json',
-      //     'Content-Type': 'multipart/form-data;',
-      //     // Authorization: 
-      //   }, 
-      //   body: data
-      // };
-      return fetch('/generatePalette',{
+      return fetch(SERVER_URL,{
         body: JSON.stringify({
-          image: photo.base64,
+          name: 'Test',
+          color: photo.base64,
         }),
         headers: {
           'content-type': 'application/json'
@@ -71,7 +52,7 @@ class Autoshoot extends React.Component {
     }
   }
   render() {
-     const {photo} = this.state;
+    const {photo} = this.state;
 
     return (
       <View style={{ flex: 1, width: '100%'}}>

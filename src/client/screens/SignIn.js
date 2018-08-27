@@ -2,15 +2,10 @@
 import React from 'react'
 import {
   View,
-  Text,
   StyleSheet,
   TextInput,
-  Button,
-  AsyncStorage
+  Button
 } from 'react-native'
-
-// import { goHome } from '../navigation'
-// import { USER_KEY } from './config'
 
 export default class SignIn extends React.Component {
   state = {
@@ -22,11 +17,8 @@ export default class SignIn extends React.Component {
   signIn = async () => {
     const { username, password } = this.state
     try {
-       // login with provider
-      //  const user = await AsyncStorage.setItem(USER_KEY, username)
       const user = 'user';
        console.log('user successfully signed in!', user)
-       goHome()
     } catch (err) {
       console.log('error:', err)
     }

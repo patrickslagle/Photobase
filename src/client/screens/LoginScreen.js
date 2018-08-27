@@ -1,21 +1,11 @@
 import React, {Component} from 'react';
 import{
   View,
-  Text,
   StyleSheet,
   Button
 } from 'react-native';
 
 class LoginScreen extends Component {
-  static get options() {
-    return {
-      topBar: {
-        title: {
-          text: 'Welcome to Tinge!'
-        },
-      }
-    };
-  }
   render() {
     return (
       <View style={styles.container}>

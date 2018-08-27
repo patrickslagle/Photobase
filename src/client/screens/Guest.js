@@ -5,18 +5,8 @@ import {
   Button,
   StyleSheet,
 } from 'react-native'
-import {Navigation} from 'react-native-navigation';
 
 export default class Screen2 extends React.Component {
-  static get options() {
-    return {
-      topBar: {
-        title: {
-          text: 'Guest Home'
-        },
-      }
-    };
-  }
   render() {
     return (
       <View style={styles.container}>
