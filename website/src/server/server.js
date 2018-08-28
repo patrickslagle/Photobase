@@ -1,24 +1,21 @@
+
 require('dotenv').config();
+
+
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const app = express();
+
 const PORT = 3000;
-const mysql = require('mysql');
+
 const router = require('./router.js');
-const mysqlDB = mysql.createConnection({
-  host     : '*',
-  user     : 'root',
-  password : process.env.PASSWORD,
-  database : process.env.DATABASE,
-  socketPath: process.env.SOCKETPATH,
-  connectTimeout: 10000
-});
+
 
 //test connection, will properly handle the route through app.get or some other route:
 app.use('/', express.static(path.join(__dirname, './../../dist')));
-mysqlDB.connect();
+
 //console.log('env', process.env.PASSWORD);
 
 app.use(bodyParser.json());
@@ -41,8 +38,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(console.log(err));
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {console.log(`Listening on port ${PORT}...`)});
 // module.exports = app;
