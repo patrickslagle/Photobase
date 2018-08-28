@@ -4,7 +4,7 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            hello:"hi"
+            hello: "hi"
         }
     }
     render () {
