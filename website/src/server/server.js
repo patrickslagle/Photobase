@@ -5,35 +5,27 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 const PORT = 3000;
-
 const mysql = require('mysql');
-var mysqlDB = mysql.createConnection({
+const router = require('./router.js');
+const mysqlDB = mysql.createConnection({
   host     : '*',
   user     : 'root',
   password : process.env.PASSWORD,
   database : process.env.DATABASE,
   socketPath: process.env.SOCKETPATH,
-  connectTimeout: 60000
+  connectTimeout: 10000
 });
+
 //test connection, will properly handle the route through app.get or some other route:
+app.use('/', express.static(path.join(__dirname, './../../dist')));
 mysqlDB.connect();
 //console.log('env', process.env.PASSWORD);
-mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
-  console.log('rows', rows);
-  if (err) throw err
-
-  console.log('The user is: ', rows[0].username);
-})
-
-mysqlDB.end()
-
-import router from ('./routes.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-app.use('/', router);
+router(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

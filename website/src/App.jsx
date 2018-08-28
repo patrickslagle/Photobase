@@ -1,15 +1,30 @@
 import React from 'react';
-
+const axios = require('axios');
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            hello:"hi"
+            hello:"hi",
+            data: []
         }
     }
-    render () {
+
+    componentDidMount() {
+        axios.get('/users')
+            .then((rows) => {
+                this.setState({ data: [...rows] });
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    render() {
         return (
-            <div>Hello from me</div>
+            <div>
+                <p>Hello from me</p>
+                <p>Data is {this.state.data}</p>
+            </div>
         )
     }
 
