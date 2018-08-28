@@ -27,6 +27,7 @@
     "jsonwebtoken": "^8.3.0",
     "jwt-simple": "^0.5.1",
     "mongoose": "^5.2.9",
+    "mysql": "github:mysqljs/mysql",
     "nodemon": "^1.18.3",
     "passport-jwt": "^4.0.0"
   }

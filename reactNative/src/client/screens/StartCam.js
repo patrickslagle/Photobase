@@ -5,8 +5,10 @@ import { Icon } from 'native-base'
 import { Camera, Permissions } from 'expo';
 
 
+
 //insert SERVER URL
-const SERVER_URL = 'http://192.168.1.43:8080/generatePalette';
+// const SERVER_URL = 'http://192.168.1.43:8080/generatePalette';
+const SERVER_URL = 'http://192.168.0.135:8080/generatePalette';
 
 
 class Autoshoot extends React.Component {
@@ -19,7 +21,8 @@ class Autoshoot extends React.Component {
       base64: true,
       exif: false
     }).then(photo => {
-      this.uploadPicture(photo.base64);
+      console.log('photo ', photo.uri);
+      this.uploadPicture(photo);
       this.setState({photo});
     })
   }
@@ -33,7 +36,7 @@ class Autoshoot extends React.Component {
         name: 'myImg.jpg',
         type: 'image/jpg'
       });
-
+      console.log(photo.uri);
       return fetch(SERVER_URL,{
         body: JSON.stringify({
           name: 'Test',

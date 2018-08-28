@@ -4,13 +4,33 @@ const dotenv = require('dotenv').config();
 const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const mysql = require('mysql');
+var mysqlDB = mysql.createConnection({
+  host     : '*',
+  user     : 'root',
+  password : process.env.PASSWORD,
+  database : process.env.DATABASE,
+  socketPath: process.env.SOCKETPATH,
+  connectTimeout: 60000
+});
+//test connection, will properly handle the route through app.get or some other route:
+mysqlDB.connect();
+console.log('env', process.env.PASSWORD);
+mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
+  console.log('rows', rows);
+  if (err) throw err
+
+  console.log('The solution is: ', rows[0].username)
+})
+
+mysqlDB.end()
 
 const Users = require('./controllers/Users');
 const tokenService = require('./services/TokenService');
 const authService = require('./services/AuthService');
 
 // Create connection to Mongo DB via Mongoose
-mongoose.connect(process.env.DB_URI);
+// mongoose.connect(process.env.DB_URI);
 mongoose.connection.once('open', () => console.log('Hello from tinge-db!'));
 mongoose.Promise = global.Promise;
 
