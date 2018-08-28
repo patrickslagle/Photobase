@@ -1,18 +1,22 @@
 import React from 'react';
 const axios = require('axios');
+import Search from './Search';
+import Headers from './Headers';
+import Display from './Display';
+
+
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            hello:"hi",
-            data: []
+            photo: []
         }
     }
 
     componentDidMount() {
-        axios.get('/users')
+        axios.get('/pictures')
             .then((rows) => {
-                this.setState({ data: [...rows] });
+                this.setState({ photo: [...rows] });
             })
             .catch((err) => {
                 console.log(err);
@@ -22,8 +26,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <p>Hello from me</p>
-                <p>Data is {this.state.data}</p>
+                <Headers />
+                <Search />
+                <Display />
             </div>
         )
     }

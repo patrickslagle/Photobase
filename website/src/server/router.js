@@ -10,14 +10,11 @@ const mysqlDB = mysql.createConnection({
 });
 mysqlDB.connect();
 module.exports = (app) => {
-  console.log('im in router????');
   //console.log(mysqlDB);
-  app.get('/users', (req, res, next) => {
-    console.log('im in router!');
-    console.log(mysqlDB);
-    mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
+  app.get('/pictures', (req, res, next) => {
+    console.log('Retrieving from database...');
+    mysqlDB.query('SELECT uri FROM pictures;', (err, rows, fields) => {
       if (err) throw err;
-      console.log('rows', rows[0].username);
       // console.log('The user is: ', rows[0].username);
       res.send(rows);
     })

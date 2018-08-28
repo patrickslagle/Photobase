@@ -1,7 +1,6 @@
 
 require('dotenv').config();
 
-
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -23,38 +22,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 router(app);
-
-const router = require('./router.js');
-
-// localhost port number
-const PORT = 3000;
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// allow access from other servers
-app.use(cors());
-
-// define routes before error handlers
-app.use(express.static(path.join(__dirname, './../../dist')));
-router(app);
-
-
-const router = require('./router.js');
-
-// localhost port number
-const PORT = 3000;
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// allow access from other servers
-app.use(cors());
-
-// define routes before error handlers
-app.use(express.static(path.join(__dirname, './../../dist')));
-router(app);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
