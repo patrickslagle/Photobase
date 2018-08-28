@@ -3,3 +3,5 @@ node_modules
 .env
 package-lock.json
 tinge-iteration-stark-5fa3ecacefa7.json
+.cache
+.dist

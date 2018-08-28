@@ -19,7 +19,6 @@ mysqlDB.connect();
 mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
   console.log('rows', rows);
   if (err) throw err
-
   console.log('The user is: ', rows[0].username);
 })
 
