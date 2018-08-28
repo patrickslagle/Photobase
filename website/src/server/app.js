@@ -1,10 +1,31 @@
+require('dotenv').config();
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const app = express();
-
 const PORT = 3000;
+
+const mysql = require('mysql');
+var mysqlDB = mysql.createConnection({
+  host     : '*',
+  user     : 'root',
+  password : process.env.PASSWORD,
+  database : process.env.DATABASE,
+  socketPath: process.env.SOCKETPATH,
+  connectTimeout: 60000
+});
+//test connection, will properly handle the route through app.get or some other route:
+mysqlDB.connect();
+//console.log('env', process.env.PASSWORD);
+mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
+  console.log('rows', rows);
+  if (err) throw err
+
+  console.log('The user is: ', rows[0].username);
+})
+
+mysqlDB.end()
 
 import router from ('./routes.js');
 

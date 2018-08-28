@@ -15,12 +15,12 @@ var mysqlDB = mysql.createConnection({
 });
 //test connection, will properly handle the route through app.get or some other route:
 mysqlDB.connect();
-console.log('env', process.env.PASSWORD);
+//console.log('env', process.env.PASSWORD);
 mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
   console.log('rows', rows);
   if (err) throw err
 
-  console.log('The solution is: ', rows[0].username)
+  console.log('The user is: ', rows[0].username);
 })
 
 mysqlDB.end()
