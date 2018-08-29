@@ -14,15 +14,15 @@ var mysqlDB = mysql.createConnection({
   connectTimeout: 60000
 });
 //test connection, will properly handle the route through app.get or some other route:
-mysqlDB.connect();
-//console.log('env', process.env.PASSWORD);
-mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
-  console.log('rows', rows);
-  if (err) throw err
-  console.log('The user is: ', rows[0].username);
-})
+// mysqlDB.connect();
+// //console.log('env', process.env.PASSWORD);
+// mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
+//   console.log('rows', rows);
+//   if (err) throw err
+//   console.log('The user is: ', rows[0].username);
+// })
 
-mysqlDB.end()
+// mysqlDB.end()
 
 const Users = require('./controllers/Users');
 const tokenService = require('./services/TokenService');

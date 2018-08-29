@@ -58,6 +58,7 @@ const UsersController = {
 
   // Middleware for generating new palette
   generatePalette(req, res, next) {
+    console.log('whats req.body?')
     // Import npm dominant color package (To be determined)
   },
 
