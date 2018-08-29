@@ -18,7 +18,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/pictures')
+        axios.get('/images')
             .then((rows) => {
                 this.setState({ photo: [...rows] });
             })

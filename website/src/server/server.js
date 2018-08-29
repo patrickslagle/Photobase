@@ -11,16 +11,14 @@ const PORT = 3000;
 
 const router = require('./router.js');
 
-
-//test connection, will properly handle the route through app.get or some other route:
-app.use('/', express.static(path.join(__dirname, './../../dist')));
-
 //console.log('env', process.env.PASSWORD);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
+//test connection, will properly handle the route through app.get or some other route:
+app.use('/', express.static(path.join(__dirname, './../../dist')));
 router(app);
 
 // catch 404 and forward to error handler
