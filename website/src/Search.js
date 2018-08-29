@@ -5,9 +5,10 @@ import Button from '@material-ui/core/Button';
 
 
 const Search = (props) => {
+    console.log(props)
     return (
-        <div className="wrapper">
-            <input placeholder="Search your image" type="text" />
+        <div className="wrap">
+            <input type="text" onChange={props.handleChange} value={props.searchInput}/>
             <Button>Search</Button>
         </div>
     )
