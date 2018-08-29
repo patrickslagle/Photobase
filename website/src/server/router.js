@@ -9,6 +9,7 @@ const mysqlDB = mysql.createConnection({
   connectTimeout: 10000
 });
 mysqlDB.connect();
+console.log('password', process.env.PASSWORD);
 module.exports = (app) => {
   console.log('im in router????');
   //console.log(mysqlDB);

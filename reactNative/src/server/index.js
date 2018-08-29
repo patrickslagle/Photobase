@@ -11,11 +11,11 @@ var mysqlDB = mysql.createConnection({
   password : process.env.PASSWORD,
   database : process.env.DATABASE,
   socketPath: process.env.SOCKETPATH,
-  connectTimeout: 60000
+  connectTimeout: 60000,
 });
 //test connection, will properly handle the route through app.get or some other route:
 mysqlDB.connect();
-//console.log('env', process.env.PASSWORD);
+console.log('mysqldb', );
 mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
   console.log('rows', rows);
   if (err) throw err

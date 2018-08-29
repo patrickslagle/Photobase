@@ -1,0 +1,9 @@
+Install gcloud: https://cloud.google.com/sdk/docs/quickstarts
+click your system i.e. Linux / macOS
+
+Finish the "Initialize the SDK" section steps.
+
+
+
+./cloud_sql_proxy -dir=/cloudsql -instances=tinge-iteration-stark:us-central1:tingestark \ -credential_file= on your local machine> &
+
