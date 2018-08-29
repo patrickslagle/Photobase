@@ -7,8 +7,8 @@ import { Camera, Permissions } from 'expo';
 
 
 //insert SERVER URL
-// const SERVER_URL = 'http://192.168.1.43:8080/generatePalette';
-const SERVER_URL = 'http://192.168.0.135:8080/generatePalette';
+const SERVER_URL = 'http://192.168.0.161:8080/generatePalette' //type hostname -I in CL to find your IP
+
 
 
 class Autoshoot extends React.Component {
@@ -23,6 +23,7 @@ class Autoshoot extends React.Component {
     }).then(photo => {
       console.log('photo ', photo.uri);
       this.uploadPicture(photo);
+      //this set state will make the taken picture be shown
       this.setState({photo});
     })
   }
@@ -57,6 +58,7 @@ class Autoshoot extends React.Component {
   render() {
     const {photo} = this.state;
 
+    //if there is a photo taken, photo will be shown. Otherwise, camera is shown. 
     return (
       <View style={{ flex: 1, width: '100%'}}>
       {photo ? (
@@ -68,7 +70,7 @@ class Autoshoot extends React.Component {
           ref={cam => this.camera = cam}>
           <View style={{flex: 1, paddingHorizontal: 10, marginBottom: 15}}>
             <View style={{flex: 1}}>
-                <MaterialCommunityIcons name="circle-outline" onPress={this.takePicture} style={{ color: 'white',justifyContent: 'flex-end',alignContent: 'flex-end', alignItems: 'flex-end', fontSize : 100 } }></MaterialCommunityIcons>
+              <MaterialCommunityIcons name="circle-outline" onPress={this.takePicture} style={{ color: 'white',justifyContent: 'flex-end',alignContent: 'flex-end', alignItems: 'flex-end', fontSize : 100 } }></MaterialCommunityIcons>
               <Icon name="ios-images" style={{ color: 'white', fontSize: 36 }} />
             </View>
           </View>
@@ -90,7 +92,6 @@ export default class StartCamera extends React.Component {
       .then(({ status }) =>
         this.setState({
           cameraPermission: status === 'granted'
-          // photo: null
         })
       );
   }

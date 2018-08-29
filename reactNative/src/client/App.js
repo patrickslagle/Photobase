@@ -8,6 +8,8 @@ import LoginScreen from './screens/LoginScreen.js';
 import SignIn from './screens/SignIn.js';
 import SignUp from './screens/SignUp.js';
 import StartCam from './screens/StartCam.js';
+import LoadPhoto from './screens/LoadPhoto.js';
+
 
 export default class App extends React.Component {
   render() {
@@ -22,7 +24,8 @@ const AppStackNavigator = createStackNavigator({
   Guest: Guest,
   SignIn: SignIn,
   SignUp: SignUp,
-  StartCam: StartCam
+  StartCam: StartCam,
+  LoadPhoto: LoadPhoto
 })
 
 const styles = StyleSheet.create({

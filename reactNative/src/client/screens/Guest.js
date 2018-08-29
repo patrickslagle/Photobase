@@ -16,6 +16,10 @@ export default class Screen2 extends React.Component {
           title="Take Picture"
         />
         <Button
+          onPress={() => this.props.navigation.navigate('LoadPhoto')}
+          title="Load Photo"
+        />
+        <Button
           onPress={() => this.props.navigation.goBack()}
           title="Go Back"
         />
