@@ -1,0 +1,14 @@
+.parent {
+    display: flex;
+    font-size: 0;
+    margin: 50px 0 0 40px;
+    width:30%;
+}
+.wrap{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+
