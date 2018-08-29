@@ -10,7 +10,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/users')
+        axios.get('/images')
             .then((rows) => {
                 this.setState({ data: [...rows] });
             })
