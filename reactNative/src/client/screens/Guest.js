@@ -67,10 +67,10 @@ class Screen2 extends React.Component {
     return (
       [<View style={styles.container} key='0'>
         <Text>Guest</Text>
-        {/* <Button
+        <Button
           onPress={() => this.props.navigation.navigate('StartCam')}
           title="Take Picture"
-        /> */}
+        />
         <Button
           onPress={() => this.props.navigation.navigate('LoadPhoto')}
           title="Load Photo"

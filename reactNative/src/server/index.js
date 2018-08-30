@@ -4,7 +4,6 @@ const dotenv = require('dotenv').config();
 const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const mysql = require('mysql');
 const db = require('./db.js')
 
 const imgUpload = require('./controllers/imgUpload');
@@ -21,7 +20,7 @@ const Users = require('./controllers/Users');
 const tokenService = require('./services/TokenService');
 const authService = require('./services/AuthService');
 
-// Create connection to Mongo DB via Mongoose
+// Create connection to Mongo DB ßßßßvia Mongoose
 // mongoose.connect(process.env.DB_URI);
 mongoose.connection.once('open', () => console.log('Hello from tinge-db!'));
 mongoose.Promise = global.Promise;
