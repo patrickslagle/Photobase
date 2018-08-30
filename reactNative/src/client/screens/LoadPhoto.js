@@ -24,6 +24,28 @@ class LoadPhoto extends React.Component {
     });
 
     console.log(result);
+    let imgBody = new FormData();
+    imgBody.append('image', {
+      uri: result.uri,
+      type: 'image/jpeg',
+      name: 'myImage' + '-' + Date.now() + '.jpg'
+    });
+
+      fetch(SERVER_URL,{
+        body: imgBody,
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+        method: 'POST'
+      })
+      .then(res => {
+        res.json()
+      })
+      .then(results => {
+        console.log('success!')
+      }).catch(err => {
+        console.error('Catch Error: ', err);
+      });
 
     if (!result.cancelled) {
       this.setState({ image: result.uri });

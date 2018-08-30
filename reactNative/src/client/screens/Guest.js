@@ -16,7 +16,7 @@ const OPACITY_ENABLED = 1.0;
 const OPACITY_DISABLED = 0.2;
 
 const mapStateToProps = store => ({
-  // messages: store.messages.messages,
+  messages: store.messages.messages,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -41,9 +41,11 @@ class Screen2 extends React.Component {
     //this.props.sendMessage(this.props.message);
     this.props.sendMessage(this.state.input);
     //axios call to post to database
-    // axios.post(, ).then(res => {
-    //   console.log('axios response in guest', res);
-    // }).catch(err => console.log('Guest axios post err', err));
+    console.log('state from button press', this.props.messages);
+
+    axios.post('http://192.168.0.135:19000/postMessages', this.props.messages[0]).then(res => {
+      console.log('axios response in guest', res);
+    }).catch(err => console.log('Guest axios post err', err));
   }
   
   componentDidMount() {

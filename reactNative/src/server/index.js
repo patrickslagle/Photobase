@@ -5,24 +5,17 @@ const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const mysql = require('mysql');
-var mysqlDB = mysql.createConnection({
-  host     : '*',
-  user     : 'root',
-  password : process.env.PASSWORD,
-  database : process.env.DATABASE,
-  socketPath: process.env.SOCKETPATH,
-  connectTimeout: 60000,
-});
-//test connection, will properly handle the route through app.get or some other route:
-// mysqlDB.connect();
-// //console.log('env', process.env.PASSWORD);
-// mysqlDB.query('SELECT * FROM users;', (err, rows, fields) => {
-//   console.log('rows', rows);
-//   if (err) throw err
-//   console.log('The user is: ', rows[0].username);
-// })
+const db = require('./db.js')
 
-// mysqlDB.end()
+const imgUpload = require('./controllers/imgUpload');
+const Multer = require('multer');
+
+const multer = Multer({
+  storage: Multer.MemoryStorage,
+  limits: {
+    fileSize: 5 * 1024 * 1024 // no larger than 5mb
+  }
+});
 
 const Users = require('./controllers/Users');
 const tokenService = require('./services/TokenService');
@@ -67,11 +60,39 @@ app.post('/login', Users.login, tokenService.createToken, (req, res) => {
   res.json({ token: res.locals.token, palettes: res.locals.palettes });
 });
 
-//Generate Palette Route
-app.post('/generatePalette', Users.generatePalette, (req, res) => {
-  
-});
+//Upload photo to Google Cloud Storage
+//https://medium.com/google-cloud/upload-images-to-google-cloud-storage-with-react-native-and-expressjs-61b8874abc49
+app.post('/image-upload',  
+  multer.single('image'),
+  imgUpload.uploadToGcs, 
+  function(request, response, next) {
+    const data = request.body;
 
+    //send URL path of Google Storage File to Database. 
+    db.query(`INSERT INTO images (uri) VALUES ('${request.file.cloudStoragePublicUrl}');`)
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
+    if (request.file && request.file.cloudStoragePublicUrl) {
+      data.imageUrl = request.file.cloudStoragePublicUrl;
+    }
+  response.send(data)
+});
+app.post('/postMessages', (req, res, next) => {
+  const data = req.body;
+  console.log('inside /postMessages from axios');
+  
+  db.query(``).then((data) => {
+    console.log('request from axios to db in index.js', data)
+    res.send(data);
+  }).catch(err => {
+    console.log('err in native/index/getMessages', err);
+  })
+})
 //Save Palette Route
 app.post('/savePalette', authService.restrict(), Users.savePalette, tokenService.createToken, (req, res) => {
   res.json( { token: res.locals.token, palettes: res.locals.palettes });

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/RedLippedBatfish/tinge#readme",
   "dependencies": {
+    "@google-cloud/storage": "^1.7.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
@@ -28,8 +29,10 @@
     "jsonwebtoken": "^8.3.0",
     "jwt-simple": "^0.5.1",
     "mongoose": "^5.2.9",
+    "multer": "^1.3.1",
     "mysql": "github:mysqljs/mysql",
     "nodemon": "^1.18.3",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "pg-promise": "^8.4.6"
   }
 }
