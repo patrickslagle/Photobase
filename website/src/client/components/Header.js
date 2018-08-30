@@ -31,7 +31,7 @@ function Headers(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
-            Welcome to Instagram
+            Welcome to Photobase
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
