@@ -33,6 +33,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "color-thief": "^2.2.3",
     "expo": "^27.0.1",
     "expo-graphics": "^1.0.0-alpha.2",
@@ -50,6 +51,7 @@
     "react-native-navigation": "^2.0.2497",
     "react-native-swiper": "^1.5.13",
     "react-navigation": "^2.12.1",
+    "redux-devtools-extension": "^2.13.5",
     "splashy": "^2.0.3"
   },
   "description": "This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).",
