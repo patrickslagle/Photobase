@@ -10,7 +10,7 @@ import { Permissions, ImagePicker } from 'expo';
 
 
 const SERVER_URL = 'http://192.168.0.161:8080/image-upload' //type hostname -I in CL to find your IP
-
+// const SERVER_URL = 'http://192.168.0.135:19000/image-upload';
 
 class LoadPhoto extends React.Component {
   state = {
