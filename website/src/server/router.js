@@ -11,8 +11,8 @@ const db = require('./db.js');
 // });
 
 module.exports = (app) => {
-  app.get('/images', (req, res, next) => {
-    db.query('SELECT uri FROM images;')
+  app.get('/messages', (req, res, next) => {
+    db.query('SELECT messages.message, message.created_at, users.username FROM messages INNER JOIN users ON messages.user_id = users_id;')
       .then((data) => {
         res.send(data);
       })
@@ -29,18 +29,15 @@ module.exports = (app) => {
         console.log(err);
       })
   });
-//   app.post('/image-upload',  
-//   multer.single('image'),
-//   imgUpload.uploadToGcs, 
-//   function(request, response, next) {
-//     const data = request.body;
-
-//     console.log('request.file', request.file.cloudStoragePublicUrl)
-//     if (request.file && request.file.cloudStoragePublicUrl) {
-//       data.imageUrl = request.file.cloudStoragePublicUrl;
-//     }
-//   response.send(data)
-// });
+  app.post('/messages', (req, res, next) => {
+    db.query(`INSERT INTO messages (user_id, message, created_at) VALUES ((SELECT _id FROM users WHERE username = 'andrew'), '${req.body.message}', '${req.body.created_at}')`)
+      .then((data) => {
+        console.log(`message posted`);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  });
 }
 
 // mySQL stuff
