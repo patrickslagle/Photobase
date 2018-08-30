@@ -83,15 +83,15 @@ app.post('/image-upload',
   response.send(data)
 });
 app.post('/postMessages', (req, res, next) => {
-  const data = req.body;
-  console.log('inside /postMessages from axios');
+  // const data = req.body;
+  // console.log('inside /postMessages from axios');
   
-  db.query(``).then((data) => {
-    console.log('request from axios to db in index.js', data)
-    res.send(data);
-  }).catch(err => {
-    console.log('err in native/index/getMessages', err);
-  })
+  // db.query(``).then((data) => {
+  //   console.log('request from axios to db in index.js', data)
+  //   res.send(data);
+  // }).catch(err => {
+  //   console.log('err in native/index/getMessages', err);
+  // })
 })
 //Save Palette Route
 app.post('/savePalette', authService.restrict(), Users.savePalette, tokenService.createToken, (req, res) => {

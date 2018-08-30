@@ -43,9 +43,9 @@ class Screen2 extends React.Component {
     //axios call to post to database
     console.log('state from button press', this.props.messages);
 
-    axios.post('http://192.168.0.135:19000/postMessages', this.props.messages[0]).then(res => {
-      console.log('axios response in guest', res);
-    }).catch(err => console.log('Guest axios post err', err));
+    // axios.post('http://192.168.0.135:19000/postMessages', this.props.messages[0]).then(res => {
+    //   console.log('axios response in guest', res);
+    // }).catch(err => console.log('Guest axios post err', err));
   }
   
   componentDidMount() {
