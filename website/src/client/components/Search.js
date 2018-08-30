@@ -7,9 +7,9 @@ import Button from '@material-ui/core/Button';
 const Search = (props) => {
     console.log(props)
     return (
-        <div className="wrap">
-            <input type="text" onChange={props.handleChange} value={props.searchInput}/>
-            <Button>Search</Button>
+        <div className="search-container">
+            <input type="text" className="search" onChange={props.handleChange} value={props.searchInput}/>
+            <Button className="search">Search</Button>
         </div>
     )
 }

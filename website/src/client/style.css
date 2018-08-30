@@ -1,0 +1,23 @@
+.picture-display-container {
+  width: 100%; 
+  display: flex; 
+  flex-wrap: wrap; 
+}
+.search-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px; 
+  line-height: 40px; 
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  background-color: whitesmoke;
+}
+.image{
+  font-size: 40px; 
+  margin: 10px; 
+  width: 700px; 
+}
+
+
