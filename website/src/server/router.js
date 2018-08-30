@@ -1,6 +1,15 @@
 const path = require('path');
 const db = require('./db.js');
 
+// const imgUpload = require('./imgUpload');
+// const Multer = require('multer');
+// const multer = Multer({
+//   storage: Multer.MemoryStorage,
+//   limits: {
+//     fileSize: 5 * 1024 * 1024 // no larger than 5mb
+//   }
+// });
+
 module.exports = (app) => {
   app.get('/messages', (req, res, next) => {
     db.query('SELECT messages.message, message.created_at, users.username FROM messages INNER JOIN users ON messages.user_id = users_id;')
