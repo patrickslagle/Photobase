@@ -10,7 +10,7 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            photo: [],
+            images: [],
             searchInput: '',
         }
         this.handleChange=this.handleChange.bind(this);
@@ -18,13 +18,14 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // axios.get('/images')
-        //     .then((rows) => {
-        //         this.setState({ photo: [...rows] });
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     })
+        axios.get('/images')
+            .then((images) => {
+                console.log('what is images.data?', images.data)
+                this.setState({ images: images.data });
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
     handleChange(event) {
         this.setState({value: event.target.value});
@@ -39,7 +40,7 @@ class App extends React.Component {
             <div>
                 <Header />
                 <Search handleChange={this.handleChange} searchInput={this.state.searchInput}/>
-                <Display />
+                <Display images={this.state.images}/>
             </div>
         )
     }

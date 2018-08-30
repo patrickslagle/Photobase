@@ -38,6 +38,18 @@ module.exports = (app) => {
         console.log(err);
       })
   });
+
+  app.get('/images', (req, res, next) => {
+    db.query('SELECT uri FROM images;')
+      .then((data) => {
+        console.log(`images received`);
+        console.log('what is data?', data)
+        res.send(data)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  });
 }
 
 // mySQL stuff
