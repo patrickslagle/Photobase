@@ -1,6 +1,15 @@
 const path = require('path');
 const db = require('./db.js');
 
+// const imgUpload = require('./imgUpload');
+// const Multer = require('multer');
+// const multer = Multer({
+//   storage: Multer.MemoryStorage,
+//   limits: {
+//     fileSize: 5 * 1024 * 1024 // no larger than 5mb
+//   }
+// });
+
 module.exports = (app) => {
   app.get('/images', (req, res, next) => {
     db.query('SELECT uri FROM images;')
@@ -20,6 +29,18 @@ module.exports = (app) => {
         console.log(err);
       })
   });
+//   app.post('/image-upload',  
+//   multer.single('image'),
+//   imgUpload.uploadToGcs, 
+//   function(request, response, next) {
+//     const data = request.body;
+
+//     console.log('request.file', request.file.cloudStoragePublicUrl)
+//     if (request.file && request.file.cloudStoragePublicUrl) {
+//       data.imageUrl = request.file.cloudStoragePublicUrl;
+//     }
+//   response.send(data)
+// });
 }
 
 // mySQL stuff
