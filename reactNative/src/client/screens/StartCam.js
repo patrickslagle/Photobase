@@ -5,9 +5,11 @@ import { Icon } from 'native-base'
 import { Camera, Permissions } from 'expo';
 
 
-
 //insert SERVER URL
-const SERVER_URL = 'http://192.168.0.161:8080/generatePalette' //type hostname -I in CL to find your IP
+//dan 192.168.0.135
+const SERVER_URL = 'http://192.168.0.135:19000/';
+//192.168.1.255
+//const SERVER_URL = 'http://192.168.0.161:8080/generatePalette' //type hostname -I in CL to find your IP
 
 
 
@@ -21,7 +23,6 @@ class Autoshoot extends React.Component {
       base64: true,
       exif: false
     }).then(photo => {
-      console.log('photo ', photo.uri);
       this.uploadPicture(photo);
       //this set state will make the taken picture be shown
       this.setState({photo});
@@ -37,24 +38,31 @@ class Autoshoot extends React.Component {
         name: 'myImg.jpg',
         type: 'image/jpg'
       });
-      console.log(photo.uri);
-      return fetch(SERVER_URL,{
+      console.log("photo location", photo.uri);
+      fetch(SERVER_URL, {
         body: JSON.stringify({
           name: 'Test',
           color: photo.base64,
         }),
         headers: {
+          'Accept': 'application/json',
           'content-type': 'application/json'
         },
         method: 'POST'
       })
       .then(response => {
         console.log('success!'); 
-        
-        response.json()})
+        response.json();
+        console.log('res', response.body);
+      })
       .catch(err => console.log('error: ', err));
     }
   }
+  
+  uploadToGoogle = () => {
+
+  }
+
   render() {
     const {photo} = this.state;
 

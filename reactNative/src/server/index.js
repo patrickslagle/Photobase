@@ -18,7 +18,7 @@ const Users = require('./controllers/Users');
 const tokenService = require('./services/TokenService');
 const authService = require('./services/AuthService');
 
-// Create connection to Mongo DB via Mongoose
+// Create connection to Mongo DB ßßßßvia Mongoose
 // mongoose.connect(process.env.DB_URI);
 mongoose.connection.once('open', () => console.log('Hello from tinge-db!'));
 mongoose.Promise = global.Promise;
@@ -79,7 +79,17 @@ app.post('/image-upload',
     }
   response.send(data)
 });
-
+app.post('/postMessages', (req, res, next) => {
+  // const data = req.body;
+  // console.log('inside /postMessages from axios');
+  
+  // db.query(``).then((data) => {
+  //   console.log('request from axios to db in index.js', data)
+  //   res.send(data);
+  // }).catch(err => {
+  //   console.log('err in native/index/getMessages', err);
+  // })
+})
 //Save Palette Route
 app.post('/savePalette', authService.restrict(), Users.savePalette, tokenService.createToken, (req, res) => {
   res.json( { token: res.locals.token, palettes: res.locals.palettes });
