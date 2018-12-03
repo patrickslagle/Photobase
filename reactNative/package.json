@@ -4,9 +4,9 @@
   "description": "Find most prominent colors in any image.",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon -e js,html,css src/server/index.js",
+    "server": "nodemon -e js,html,css server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e js,html,css src/server/index.js"
+    "start": "nodemon -e js,html,css server/index.js"
   },
   "repository": {
     "type": "git",
