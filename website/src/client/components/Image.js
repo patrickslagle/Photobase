@@ -1,11 +1,9 @@
 import React from "react";
 
-const Image = (props) => {
-    return (  
-        <div>
-            {<img src={props.eachImage} className="image" alt="Italian Trulli" />}
-        </div>
-    )
-}
-export default Image;
+const Image = ({ eachImage }) => (  
+  <div>
+    <img src={eachImage} className="image" alt="Italian Trulli" />
+  </div>
+);
 
+export default Image;
